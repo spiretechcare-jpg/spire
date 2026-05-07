@@ -17,7 +17,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:3001/api/orders/user/${user.id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/orders/user/${user.id}`)
         .then(res => res.json())
         .then(data => setOrders(data))
         .catch(err => console.error(err));
@@ -47,7 +47,7 @@ export default function Profile() {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const res = await fetch(`http://localhost:3001/api/users/${user.id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editData)

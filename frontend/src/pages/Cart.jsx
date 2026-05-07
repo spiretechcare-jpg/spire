@@ -36,7 +36,7 @@ export default function Cart() {
     if (!promoCode.trim()) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/api/promo-codes/validate/${promoCode}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/promo-codes/validate/${promoCode}`);
       const data = await res.json();
       if (res.ok) {
         setAppliedPromo(data);
@@ -72,7 +72,7 @@ export default function Cart() {
         total_amount: total
       };
 
-      const res = await fetch('http://localhost:3001/api/orders', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)

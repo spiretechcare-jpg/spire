@@ -34,7 +34,7 @@ export default function Admin() {
 
   const fetchProducts = () => {
     setLoading(true);
-    fetch('http://localhost:3001/api/products')
+    fetch(`${import.meta.env.VITE_API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
@@ -48,7 +48,7 @@ export default function Admin() {
 
   const fetchOrders = () => {
     setLoading(true);
-    fetch('http://localhost:3001/api/orders')
+    fetch(`${import.meta.env.VITE_API_URL}/api/orders`)
       .then(res => res.json())
       .then(data => {
         setOrders(data);
@@ -62,7 +62,7 @@ export default function Admin() {
 
   const fetchPromoCodes = () => {
     setLoading(true);
-    fetch('http://localhost:3001/api/promo-codes')
+    fetch(`${import.meta.env.VITE_API_URL}/api/promo-codes`)
       .then(res => res.json())
       .then(data => {
         setPromoCodes(data);
@@ -76,7 +76,7 @@ export default function Admin() {
 
   const fetchPcParts = () => {
     setLoading(true);
-    fetch('http://localhost:3001/api/pc-parts')
+    fetch(`${import.meta.env.VITE_API_URL}/api/pc-parts`)
       .then(res => res.json())
       .then(data => {
         setPcParts(data);
@@ -98,7 +98,7 @@ export default function Admin() {
   }, [isAuthenticated, activeTab]);
 
   const handleUpdateShipping = (orderId, status) => {
-    fetch(`http://localhost:3001/api/orders/${orderId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ shipping_status: status })
@@ -193,8 +193,8 @@ export default function Admin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const url = editingProduct 
-      ? `http://localhost:3001/api/products/${editingProduct.id}`
-      : 'http://localhost:3001/api/products';
+      ? `${import.meta.env.VITE_API_URL}/api/products/${editingProduct.id}`
+      : `${import.meta.env.VITE_API_URL}/api/products`;
     const method = editingProduct ? 'PUT' : 'POST';
     fetch(url, {
       method,
@@ -211,8 +211,8 @@ export default function Admin() {
   const handlePromoSubmit = (e) => {
     e.preventDefault();
     const url = editingPromo 
-      ? `http://localhost:3001/api/promo-codes/${editingPromo.id}`
-      : 'http://localhost:3001/api/promo-codes';
+      ? `${import.meta.env.VITE_API_URL}/api/promo-codes/${editingPromo.id}`
+      : `${import.meta.env.VITE_API_URL}/api/promo-codes`;
     const method = editingPromo ? 'PUT' : 'POST';
     fetch(url, {
       method,
@@ -229,8 +229,8 @@ export default function Admin() {
   const handlePcPartSubmit = (e) => {
     e.preventDefault();
     const url = editingPcPart 
-      ? `http://localhost:3001/api/pc-parts/${editingPcPart.id}`
-      : 'http://localhost:3001/api/pc-parts';
+      ? `${import.meta.env.VITE_API_URL}/api/pc-parts/${editingPcPart.id}`
+      : `${import.meta.env.VITE_API_URL}/api/pc-parts`;
     const method = editingPcPart ? 'PUT' : 'POST';
     fetch(url, {
       method,
@@ -246,21 +246,21 @@ export default function Admin() {
 
   const handleDelete = (id) => {
     if (window.confirm("Delete this product?")) {
-      fetch(`http://localhost:3001/api/products/${id}`, { method: 'DELETE' })
+      fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`, { method: 'DELETE' })
         .then(() => fetchProducts());
     }
   };
 
   const handleDeletePromo = (id) => {
     if (window.confirm("Delete this promo code?")) {
-      fetch(`http://localhost:3001/api/promo-codes/${id}`, { method: 'DELETE' })
+      fetch(`${import.meta.env.VITE_API_URL}/api/promo-codes/${id}`, { method: 'DELETE' })
         .then(() => fetchPromoCodes());
     }
   };
 
   const handleDeletePcPart = (id) => {
     if (window.confirm("Delete this PC part?")) {
-      fetch(`http://localhost:3001/api/pc-parts/${id}`, { method: 'DELETE' })
+      fetch(`${import.meta.env.VITE_API_URL}/api/pc-parts/${id}`, { method: 'DELETE' })
         .then(() => fetchPcParts());
     }
   };

@@ -21,7 +21,7 @@ export default function Products() {
 
   // 2. Fetch products and set initial categories
   useEffect(() => {
-    fetch('http://localhost:3001/api/products')
+    fetch(`${import.meta.env.VITE_API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
