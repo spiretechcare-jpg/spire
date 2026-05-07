@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface-bright text-on-surface font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .micro-shadow {
+    box-shadow: 0 4px 12px rgba(19, 27, 46, 0.05);
+  }
+  .tonal-shift {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
